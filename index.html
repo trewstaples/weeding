@@ -3,33 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Приглашение на свадьбу</title>
+    <title>Свадебное приглашение</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/countdown-js@2.6.0/dist/countdown.min.js"></script>
+    <script defer src="script.js"></script>
   </head>
   <body>
-    <!-- Главный экран -->
     <section class="hero">
-      <h2>«Любовь будет существовать всегда»</h2>
-      <p class="bible-quote">(1 Коринфянам 13:8)</p>
-      <h1>Алексей & Анна</h1>
-      <p class="invitation-text">Мы будем искренне рады разделить этот день с вами.</p>
-      <p class="date">25 | 04 | 25</p>
+      <div class="hero-content">
+        <h2>Приглашение на свадьбу</h2>
+        <p class="bible-quote">«Любовь будет существовать всегда» (1 Коринфянам 13:8)</p>
+        <h1>Алексей & Анна</h1>
+        <p class="date">25 | 04 | 25</p>
 
-      <!-- Таймер -->
-      <div class="countdown">
-        <div><span id="weeks"></span> недель</div>
-        <div><span id="days"></span> дней</div>
-        <div><span id="hours"></span> часов</div>
-        <div><span id="minutes"></span> минут</div>
-        <div><span id="seconds"></span> секунд</div>
+        <div class="countdown">
+          <div><span id="weeks"></span> недель</div>
+          <div><span id="days"></span> дней</div>
+          <div><span id="hours"></span> часов</div>
+          <div><span id="minutes"></span> минут</div>
+          <div><span id="seconds"></span> секунд</div>
+        </div>
       </div>
-
-      <p class="location">ЗАГС Приморского района</p>
-      <p class="address">Стародеревенская ул., дом 5</p>
     </section>
-
-    <!-- Блок 2 - Видеосъемка, духи, дресскод -->
     <section class="info">
       <h2>Видеосъемка</h2>
       <p>На регистрации видеосъемка запрещена. Будет профессиональный фотограф.</p>
@@ -41,8 +35,6 @@
       <h2>Дресскод</h2>
       <p>Формальный стиль. Цветовая гамма - пастельные и натуральные оттенки.</p>
     </section>
-
-    <!-- Блок 3 - Расписание -->
     <section class="schedule">
       <h2>Расписание</h2>
       <ul>
@@ -52,18 +44,5 @@
         <li><strong>18:00</strong> - Начало банкета</li>
       </ul>
     </section>
-
-    <!-- Блок 4 - Карта -->
-    <section class="map">
-      <h2>Как добраться</h2>
-      <iframe
-        src="https://yandex.ru/map-widget/v1/?um=constructor%3A9b15338e139c2db3a1cb4bf1b2b8e0d9885f3c4d5a7a2a3d1c660e729d0c1e14&amp;source=constructor"
-        width="100%"
-        height="400"
-        frameborder="0"
-      ></iframe>
-    </section>
-
-    <script src="script.js"></script>
   </body>
 </html>

@@ -1,114 +1,60 @@
-/* Общие стили */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+
 body {
   margin: 0;
-  font-family: 'Arial', sans-serif;
+  font-family: 'Playfair Display', serif;
+  color: #3e2723;
   text-align: center;
-  scroll-behavior: smooth;
-  color: #2c3d2d; /* Темно-зелёный */
+  background-color: #f8f1e7;
 }
 
-/* Главный экран */
 .hero {
-  position: relative;
-  color: #3b4d38;
-  padding: 100px 20px;
-  min-height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
-  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  padding: 0px 20px;
+  background: url('img/city.jpg') no-repeat center center;
+  background-size: contain; /* Чтобы картинка не растягивалась */
 }
 
-/* Фоновое изображение */
+@media (max-width: 768px) {
+  .hero {
+    background-size: cover;
+  }
+}
 
-/* Цитата */
-.hero h2 {
-  font-family: 'Cursive', serif;
-  font-size: 26px;
-  color: #4a5d43;
-  margin-bottom: 5px;
+.hero-content {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+}
+
+h1 {
+  font-size: 36px;
+  margin: 10px 0;
+  color: #8b0000;
+}
+
+h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #8b0000;
 }
 
 .bible-quote {
-  font-size: 18px;
   font-style: italic;
-  margin-bottom: 20px;
 }
 
-/* Имена молодоженов */
-.hero h1 {
-  font-family: 'Cursive', serif;
-  font-size: 50px;
-  color: #2c3d2d;
-  margin: 10px 0;
-}
-
-/* Пригласительный текст */
-.invitation-text {
-  font-size: 22px;
-  margin: 10px 0;
-}
-
-/* Дата */
 .date {
-  font-size: 26px;
+  font-size: 24px;
   font-weight: bold;
-  margin: 15px 0;
 }
 
-/* Таймер */
 .countdown {
   display: flex;
-  gap: 15px;
-  font-size: 22px;
-  font-weight: bold;
-  margin-top: 15px;
-  color: #2c3d2d;
-}
-
-/* Локация */
-.location {
-  font-size: 20px;
-  font-weight: bold;
-  margin-top: 30px;
-}
-
-.address {
+  justify-content: space-around;
+  margin: 20px 0;
   font-size: 18px;
-  color: #4a5d43;
-}
-
-/* Общие стили блоков */
-section {
-  padding: 60px 20px;
-}
-
-.info,
-.schedule,
-.map {
-  background-color: #f5f5f5;
-}
-
-.info h2,
-.schedule h2,
-.map h2 {
-  font-size: 28px;
-  color: #2c3d2d;
-  margin-bottom: 20px;
-}
-
-.info p,
-.schedule ul li {
-  font-size: 20px;
-  margin: 10px 0;
-}
-
-.schedule ul {
-  list-style: none;
-  padding: 0;
-}
-
-.schedule ul li {
-  font-size: 22px;
-  margin-bottom: 10px;
 }
