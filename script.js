@@ -26,3 +26,34 @@ document.addEventListener('DOMContentLoaded', function () {
   setInterval(updateCountdown, 1000)
   updateCountdown()
 })
+
+document.addEventListener('DOMContentLoaded', () => {
+  // Находим все кнопки табов
+  const tabButtons = document.querySelectorAll('.tab-button')
+  const tabPanes = document.querySelectorAll('.tab-pane')
+
+  // Добавляем обработчик для каждой кнопки
+  tabButtons.forEach(button => {
+    button.addEventListener('click', () => {
+      // Убираем активный класс у всех кнопок
+      tabButtons.forEach(btn => {
+        btn.classList.remove('active')
+      })
+
+      // Убираем активный класс у всех панелей
+      tabPanes.forEach(pane => {
+        pane.classList.remove('active')
+      })
+
+      // Добавляем активный класс нажатой кнопке
+      button.classList.add('active')
+
+      // Находим и показываем соответствующую панель
+      const tabId = button.getAttribute('data-tab')
+      const targetPane = document.getElementById(tabId)
+      if (targetPane) {
+        targetPane.classList.add('active')
+      }
+    })
+  })
+})

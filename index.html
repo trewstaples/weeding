@@ -40,6 +40,7 @@
       </div>
     </section>
     <section class="info">
+      <h2 class="section-title">Некоторые правила</h2>
       <div class="info-container">
         <ul class="info-list">
           <li class="info-item">
@@ -122,13 +123,45 @@
       </div>
     </section>
     <section class="schedule">
-      <h2>Расписание</h2>
+      <h2 class="section-title">Расписание</h2>
       <ul>
-        <li><strong>11:30</strong> - Сбор гостей</li>
-        <li><strong>12:00</strong> - Регистрация</li>
-        <li><strong>14:00</strong> - Видеоконференция Zoom</li>
-        <li><strong>18:00</strong> - Начало банкета</li>
+        <li><strong>11:30</strong> Сбор гостей</li>
+        <li><strong>12:00</strong> Регистрация</li>
+        <li><strong>14:00</strong> Видеоконференция Zoom</li>
+        <li><strong>18:00</strong> Начало банкета</li>
+        <li><strong>00:00</strong> Конец банкета</li>
       </ul>
+    </section>
+    <section class="directions">
+      <h2 class="section-title">Как добраться</h2>
+      <div class="tabs">
+        <button class="tab-button active" data-tab="car">
+          <img src="img/car.svg" alt="На автомобиле" class="tab-icon" />
+          На автомобиле
+        </button>
+        <button class="tab-button" data-tab="bus">
+          <img src="img/bus.svg" alt="На автобусе" class="tab-icon" />
+          На автобусе
+        </button>
+        <button class="tab-button" data-tab="walk">
+          <img src="img/walk.svg" alt="Пешком" class="tab-icon" />
+          Пешком
+        </button>
+      </div>
+
+      <div class="address-search">
+        <div class="search-container">
+          <input type="text" placeholder="Введите адрес" class="address-input" />
+          <div class="button-group">
+            <button class="search-button">Найти</button>
+            <button class="reset-button">Сбросить</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="map">
+        <iframe src="https://yandex.ru/map-widget/v1/?ll=37.620393,55.753960&z=12" width="100%" height="400" frameborder="0"> </iframe>
+      </div>
     </section>
   </body>
 </html>
