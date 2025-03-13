@@ -5,42 +5,66 @@ body {
   font-family: 'Playfair Display', serif;
   color: #3e2723;
   text-align: center;
-  background-color: #f8f1e7;
+  /* background-color: #f8f1e7; */
 }
 
 .hero {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
-  padding: 0px 20px;
-  background: url('img/city.jpg') no-repeat center center;
-  background-size: contain; /* Чтобы картинка не растягивалась */
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    background-size: cover;
-  }
+.invitation-title {
+  font-size: 28px;
+  color: #446c8c;
+  margin-bottom: 20px;
+  font-weight: normal;
+  letter-spacing: 1px;
+}
+
+.hero-image {
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  background: url('img/nature.png') no-repeat center center;
+  background-size: contain;
+  margin: 0 auto;
+}
+
+.hero-image::before {
+  content: '';
+  display: block;
+  padding-top: 100%;
 }
 
 .hero-content {
-  background: rgba(255, 255, 255, 0.7);
-  padding: 30px;
-  border-radius: 10px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background: none;
+  padding: 0;
+  width: 90%;
   max-width: 500px;
 }
 
 h1 {
-  font-size: 36px;
-  margin: 10px 0;
-  color: #8b0000;
+  font-size: 52px;
+  margin: 0 0 20px;
+  color: #1d3557;
+  font-weight: normal;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
 }
 
 h2 {
   font-size: 20px;
   font-weight: bold;
-  color: #8b0000;
+  color: #446c8c;
 }
 
 .bible-quote {
@@ -49,12 +73,264 @@ h2 {
 
 .date {
   font-size: 24px;
-  font-weight: bold;
+  font-weight: normal;
+  color: #1d3557;
+  margin: 0;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
 }
 
 .countdown {
   display: flex;
-  justify-content: space-around;
-  margin: 20px 0;
+  justify-content: center;
+  gap: 30px;
+  margin: 30px auto 0;
   font-size: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 25px 40px;
+  border-radius: 10px;
+  max-width: 600px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 80px;
+}
+
+.countdown-number {
+  font-size: 36px;
+  font-weight: bold;
+  color: #446c8c;
+  margin-bottom: 8px;
+}
+
+.countdown-label {
+  font-size: 14px;
+  color: #666;
+  text-transform: lowercase;
+}
+
+.info {
+  padding: 40px 20px;
+  background-color: #fff;
+}
+
+.info-container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.info-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  text-align: center;
+  padding: 25px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 10px;
+}
+
+.info-item:last-child {
+  margin-bottom: 0;
+}
+
+.info-content {
+  width: 100%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.info-content h2 {
+  margin: 0;
+  font-size: 24px;
+  line-height: 1.2;
+  color: #1d3557;
+}
+
+.info-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.info-content p {
+  margin: 15px 0;
+  line-height: 1.8;
+  font-size: 16px;
+  text-align: center;
+  text-indent: 20px;
+  width: 100%;
+}
+
+.rules-list h3 {
+  color: #3e2723;
+  font-size: 20px;
+  margin: 0 0 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.rules-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.rules-list ul:last-child {
+  margin-bottom: 0;
+}
+
+.rules-list li {
+  margin-bottom: 15px;
+  line-height: 1.8;
+  padding: 0;
+  text-align: center;
+  font-size: 16px;
+  text-indent: 20px;
+}
+
+.rules-list li:last-child {
+  margin-bottom: 0;
+}
+
+.info-item.appreciation {
+  align-items: center;
+  background-color: rgba(139, 0, 0, 0.05);
+  border: 1px solid rgba(139, 0, 0, 0.1);
+}
+
+.info-item.appreciation .info-content h2 {
+  margin-bottom: 0;
+}
+
+.info-item.appreciation p {
+  margin: 0;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.2;
+}
+
+.schedule {
+  padding: 60px 20px;
+  background-color: #fff;
+}
+
+.schedule h2 {
+  margin-bottom: 30px;
+}
+
+.schedule ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 800px;
+  width: 100%;
+}
+
+.schedule li {
+  margin-bottom: 15px;
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.schedule li:last-child {
+  margin-bottom: 0;
+}
+
+.schedule strong {
+  color: #446c8c;
+  margin-right: 10px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 20px 10px;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .hero-image::before {
+    padding-top: 100%;
+  }
+
+  .invitation-title {
+    font-size: 24px;
+    margin-bottom: 15px;
+  }
+
+  h1 {
+    font-size: 36px;
+    margin-bottom: 15px;
+  }
+
+  .date {
+    font-size: 20px;
+  }
+
+  .countdown {
+    padding: 15px;
+    gap: 15px;
+    margin-top: 20px;
+  }
+
+  .countdown-item {
+    min-width: 60px;
+  }
+
+  .countdown-number {
+    font-size: 28px;
+    margin-bottom: 5px;
+  }
+
+  .countdown-label {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content {
+    width: 85%;
+  }
+
+  h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+  }
+
+  .date {
+    font-size: 18px;
+  }
+
+  .countdown {
+    padding: 10px;
+    gap: 10px;
+  }
+
+  .countdown-item {
+    min-width: 50px;
+  }
+
+  .countdown-number {
+    font-size: 24px;
+  }
 }
