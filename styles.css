@@ -1,11 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 
+html {
+  font-size: 24px;
+}
+
+:root {
+  --color-primary: rgba(44, 62, 80, 1);
+  --color-secondary: ;
+  --font-family-base: 'Playfair Display', serif;
+  --font-size-base: 1rem;
+  --font-size-medium: 1.5rem;
+  --font-size-large: 2rem;
+  --title-font-size: ;
+}
+
 body {
   margin: 0;
-  font-family: 'Playfair Display', serif;
-  color: #3e2723;
+  color: var(--color-primary);
   text-align: center;
-  /* background-color: #f8f1e7; */
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: var(--font-size-large);
+}
+
+h2 {
+  font-size: var(--font-size-medium);
 }
 
 .hero {
@@ -18,26 +39,20 @@ body {
 }
 
 .invitation-title {
-  font-size: 28px;
-  color: #446c8c;
-  margin-bottom: 20px;
   font-weight: normal;
-  letter-spacing: 1px;
 }
 
 .hero-image {
   width: 100%;
-  max-width: 800px;
+  max-width: 600px;
   position: relative;
-  background: url('img/nature.png') no-repeat center center;
-  background-size: contain;
+  background: url('img/city.webp') no-repeat center center;
+  background-size: cover;
   margin: 0 auto;
-}
-
-.hero-image::before {
-  content: '';
-  display: block;
-  padding-top: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  aspect-ratio: 1 / 1;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content {
@@ -46,25 +61,20 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  background: none;
-  padding: 0;
+  background-color: rgba(211, 211, 211, 0.8);
+  /* color: white; */
+  padding: 20px;
+  border-radius: 10px;
   width: 90%;
-  max-width: 500px;
+  max-width: 400px;
+  white-space: nowrap;
 }
 
 h1 {
-  font-size: 52px;
-  margin: 0 0 20px;
-  color: #1d3557;
+  margin: 20px;
   font-weight: normal;
   letter-spacing: 2px;
-  text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
-}
-
-h2 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #446c8c;
+  /* text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6); */
 }
 
 .bible-quote {
@@ -72,9 +82,7 @@ h2 {
 }
 
 .date {
-  font-size: 24px;
   font-weight: normal;
-  color: #1d3557;
   margin: 0;
   letter-spacing: 1px;
   text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
@@ -85,7 +93,6 @@ h2 {
   justify-content: center;
   gap: 30px;
   margin: 30px auto 0;
-  font-size: 18px;
   background: rgba(255, 255, 255, 0.95);
   padding: 25px 40px;
   border-radius: 10px;
@@ -101,21 +108,17 @@ h2 {
 }
 
 .countdown-number {
-  font-size: 36px;
+  font-size: var(--font-size-medium);
   font-weight: bold;
-  color: #446c8c;
   margin-bottom: 8px;
 }
 
 .countdown-label {
-  font-size: 14px;
-  color: #666;
   text-transform: lowercase;
 }
 
 .info {
   padding: 40px 20px;
-  background-color: #fff;
 }
 
 .info-container {
@@ -134,10 +137,8 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom: 30px;
   text-align: center;
   padding: 25px;
-  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
 }
 
@@ -159,9 +160,7 @@ h2 {
 
 .info-content h2 {
   margin: 0;
-  font-size: 24px;
   line-height: 1.2;
-  color: #446c8c;
 }
 
 .info-icon {
@@ -173,15 +172,11 @@ h2 {
 .info-content p {
   margin: 15px 0;
   line-height: 1.8;
-  font-size: 16px;
-  text-align: center;
-  text-indent: 20px;
+  text-align: left;
   width: 100%;
 }
 
 .rules-list h3 {
-  color: #3e2723;
-  font-size: 20px;
   margin: 0 0 20px;
   font-weight: 600;
   text-align: center;
@@ -202,7 +197,6 @@ h2 {
   line-height: 1.8;
   padding: 0;
   text-align: center;
-  font-size: 16px;
   text-indent: 20px;
 }
 
@@ -212,8 +206,6 @@ h2 {
 
 .info-item.appreciation {
   align-items: center;
-  background-color: rgba(139, 0, 0, 0.05);
-  border: 1px solid rgba(139, 0, 0, 0.1);
 }
 
 .info-item.appreciation .info-content h2 {
@@ -223,7 +215,6 @@ h2 {
 .info-item.appreciation p {
   margin: 0;
   font-style: italic;
-  font-size: 18px;
   line-height: 1.2;
 }
 
@@ -234,8 +225,6 @@ h2 {
 
 .schedule h2 {
   margin-bottom: 40px;
-  font-size: 32px;
-  color: #1d3557;
   letter-spacing: 1px;
 }
 
@@ -252,26 +241,17 @@ h2 {
 
 .schedule li {
   margin: 0;
-  font-size: 22px;
   line-height: 1.4;
   display: grid;
   grid-template-columns: 120px 1fr;
   align-items: center;
   padding: 15px 25px;
-  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 10px;
   transition: transform 0.2s ease;
   text-align: left;
 }
 
-.schedule li:hover {
-  transform: translateY(-2px);
-  background-color: rgba(255, 255, 255, 0.9);
-}
-
 .schedule strong {
-  color: #446c8c;
-  font-size: 24px;
   display: block;
 }
 
@@ -304,6 +284,7 @@ h2 {
   }
 
   .countdown {
+    font-size: var(--title-font-size);
     padding: 15px;
     gap: 15px;
     margin-top: 20px;
@@ -407,12 +388,6 @@ h2 {
     font-size: 14px;
   }
 }
-.section-title {
-  font-size: 32px;
-  color: #446c8c;
-  margin-bottom: 2rem;
-  text-align: center;
-}
 
 .tabs {
   display: flex;
@@ -430,7 +405,6 @@ h2 {
   border: 2px solid #446c8c;
   border-radius: 8px;
   background: white;
-  color: #446c8c;
   font-family: 'Playfair Display', serif;
   font-size: 16px;
   cursor: pointer;
@@ -442,7 +416,6 @@ h2 {
 }
 
 .tab-button.active {
-  background: #446c8c;
   color: white;
 }
 
@@ -508,7 +481,6 @@ h2 {
 }
 
 .search-button {
-  background-color: #446c8c;
   color: white;
   border: none;
 }
