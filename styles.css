@@ -5,13 +5,16 @@ html {
 }
 
 :root {
-  --color-primary: rgba(44, 62, 80, 1);
-  --color-secondary: ;
+  --color-primary: rgb(43, 93, 124);
+  --color-secondary: rgb(51, 51, 51);
   --font-family-base: 'Playfair Display', serif;
   --font-size-base: 1rem;
-  --font-size-medium: 1.5rem;
-  --font-size-large: 2rem;
+  --font-size-small: 1rem; /* 16px */
+  --font-size-medium: 1.5rem; /* 24px */
+  --font-size-large: 2rem; /* 32px */
   --title-font-size: ;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
 }
 
 body {
@@ -26,105 +29,149 @@ h1 {
 }
 
 h2 {
+  margin: 0;
   font-size: var(--font-size-medium);
+}
+
+p {
+  color: var(--color-secondary);
+}
+
+/* SECTION HERO */
+section {
+  margin: 0 auto;
+  padding: 40px 20px;
+  max-width: 600px;
 }
 
 .hero {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 40px 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.invitation-title {
-  font-weight: normal;
+  gap: 30px;
 }
 
 .hero-image {
-  width: 100%;
-  max-width: 600px;
   position: relative;
-  background: url('img/city.webp') no-repeat center center;
+  width: 100%;
+  background: url('img/nature.png') no-repeat center center;
   background-size: cover;
-  margin: 0 auto;
-  border-radius: 50%;
-  overflow: hidden;
   aspect-ratio: 1 / 1;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .hero-content {
+  padding: 20px;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   background-color: rgba(211, 211, 211, 0.8);
-  /* color: white; */
-  padding: 20px;
   border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
   white-space: nowrap;
 }
 
-h1 {
-  margin: 20px;
+.hero-content h1 {
+  margin: 0;
   font-weight: normal;
-  letter-spacing: 2px;
-  /* text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6); */
-}
-
-.bible-quote {
-  font-style: italic;
 }
 
 .date {
-  font-weight: normal;
   margin: 0;
+  font-weight: normal;
   letter-spacing: 1px;
   text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
 }
 
 .countdown {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 30px auto 0;
-  background: rgba(255, 255, 255, 0.95);
+  margin: 0px auto 0;
   padding: 25px 40px;
-  border-radius: 10px;
   max-width: 600px;
+  display: flex;
+  gap: 30px;
+  border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .countdown-item {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 8px;
   min-width: 80px;
 }
 
 .countdown-number {
   font-size: var(--font-size-medium);
   font-weight: bold;
-  margin-bottom: 8px;
 }
 
-.countdown-label {
-  text-transform: lowercase;
+@media (max-width: 1024px) {
+  html {
+    font-size: 18px;
+  }
+
+  section {
+    max-width: 500px;
+    padding: 30px 15px;
+  }
+
+  .hero {
+    gap: 20px;
+  }
+
+  .hero-content {
+    padding: 15px;
+  }
+
+  .countdown {
+    gap: 20px;
+    margin: 20px auto 0;
+    padding: 20px 30px;
+  }
+
+  .countdown-item {
+    gap: 6px;
+    min-width: 60px;
+  }
 }
 
-.info {
+@media (max-width: 480px) {
+  html {
+    font-size: 16px;
+  }
+
+  section {
+    max-width: 100%;
+    padding: 20px 10px;
+  }
+
+  .hero {
+    gap: 15px;
+  }
+
+  .hero-content {
+    padding: 10px;
+  }
+
+  .countdown {
+    gap: 15px;
+    margin: 15px auto 0;
+    padding: 15px 20px;
+  }
+
+  .countdown-item {
+    gap: 4px;
+    min-width: 50px;
+  }
+}
+
+/* SECTION INFO */
+/* .info {
   padding: 40px 20px;
 }
 
 .info-container {
-  max-width: 800px;
-  margin: 0 auto;
   width: 100%;
+  margin: 0 auto;
 }
 
 .info-list {
@@ -138,7 +185,6 @@ h1 {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 25px;
   border-radius: 10px;
 }
 
@@ -232,7 +278,6 @@ h1 {
   list-style: none;
   padding: 0;
   margin: 0 auto;
-  max-width: 600px;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -255,25 +300,15 @@ h1 {
   display: block;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    padding: 20px 10px;
-  }
+.schedule__item {
+  color: var(--color-secondary);
+}
 
-  .hero-image {
-    width: 100%;
-    max-width: 100%;
-  }
+.schedule__time {
+  color: var(--color-primary);
+} */
 
-  .hero-image::before {
-    padding-top: 100%;
-  }
-
-  .invitation-title {
-    font-size: 24px;
-    margin-bottom: 15px;
-  }
-
+/* @media (max-width: 768px) {
   h1 {
     font-size: 36px;
     margin-bottom: 15px;
@@ -283,12 +318,9 @@ h1 {
     font-size: 20px;
   }
 
-  .countdown {
-    font-size: var(--title-font-size);
-    padding: 15px;
+ .countdown {
     gap: 15px;
-    margin-top: 20px;
-  }
+  } 
 
   .countdown-item {
     min-width: 60px;
@@ -317,13 +349,9 @@ h1 {
   .schedule strong {
     font-size: 22px;
   }
-}
+} */
 
-@media (max-width: 480px) {
-  .hero-content {
-    width: 85%;
-  }
-
+/* @media (max-width: 480px) {
   h1 {
     font-size: 28px;
     margin-bottom: 10px;
@@ -387,9 +415,9 @@ h1 {
     padding: 12px 15px;
     font-size: 14px;
   }
-}
+} */
 
-.tabs {
+/* .tabs {
   display: flex;
   justify-content: center;
   gap: 15px;
@@ -441,7 +469,6 @@ h1 {
 .address-search {
   margin: 5px auto;
   width: 100%;
-  max-width: 600px;
   padding: 0 20px;
   box-sizing: border-box;
 }
@@ -498,3 +525,24 @@ h1 {
 .reset-button:hover {
   background-color: #d0d0d0;
 }
+
+.invitation__content {
+  margin: 0 auto;
+  text-align: left;
+}
+
+.invitation__text {
+  line-height: 1.8;
+  margin-bottom: var(--spacing-md);
+}
+
+.invitation__text em {
+  font-weight: bold;
+  text-align: center;
+}
+
+.invitation__signature {
+  font-style: italic;
+  margin-top: var(--spacing-lg);
+}
+ */
