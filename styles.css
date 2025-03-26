@@ -29,7 +29,7 @@ h1 {
 }
 
 h2 {
-  margin: 0;
+  margin: 0px 0 25px;
   font-size: var(--font-size-medium);
 }
 
@@ -48,6 +48,10 @@ section {
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+.hero h2 {
+  margin: 0;
 }
 
 .hero-image {
@@ -146,6 +150,24 @@ section {
   margin-top: 20px;
 }
 
+/* SECTION SCHEDULE */
+.schedule__list {
+  list-style: none;
+  padding: 0;
+}
+
+.schedule__item {
+  display: flex;
+  gap: 80px;
+  margin-bottom: 20px;
+}
+
+.schedule__event {
+  color: var(--color-secondary);
+  flex-grow: 1;
+  text-align: left;
+}
+
 @media (max-width: 1024px) {
   html {
     font-size: 18px;
@@ -177,6 +199,10 @@ section {
   .invitation {
     padding: 20 30px;
   }
+
+  .schedule__item {
+    gap: 40px;
+  }
 }
 
 @media (max-width: 480px) {
@@ -207,18 +233,7 @@ section {
   }
 }
 
-/* 
-
-.schedule {
-  padding: 60px 20px;
-  background-color: #fff;
-}
-
-.schedule h2 {
-  margin-bottom: 40px;
-  letter-spacing: 1px;
-}
-
+/*
 .schedule ul {
   list-style: none;
   padding: 0;
