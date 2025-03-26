@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 document.addEventListener('DOMContentLoaded', () => {
   // Находим все кнопки табов
-  const tabButtons = document.querySelectorAll('.tab-button')
+  const tabButtons = document.querySelectorAll('.map__tab-button')
   const tabPanes = document.querySelectorAll('.tab-pane')
 
   // Добавляем обработчик для каждой кнопки
