@@ -83,10 +83,11 @@ section {
 }
 
 .countdown {
-  margin: 0px auto 0;
+  margin: 0;
   padding: 25px 40px;
   max-width: 600px;
   display: flex;
+  justify-content: center;
   gap: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -104,6 +105,22 @@ section {
   font-weight: bold;
 }
 
+/* SECTION INVITATION */
+
+.invitation {
+  text-align: left;
+}
+
+.invitation em {
+  font-weight: bold;
+  text-align: center;
+}
+
+.invitation__signature {
+  font-style: italic;
+  margin-top: var(--spacing-lg);
+}
+
 @media (max-width: 1024px) {
   html {
     font-size: 18px;
@@ -111,7 +128,7 @@ section {
 
   section {
     max-width: 500px;
-    padding: 30px 15px;
+    padding: 30px 20px;
   }
 
   .hero {
@@ -123,14 +140,17 @@ section {
   }
 
   .countdown {
-    gap: 20px;
-    margin: 20px auto 0;
-    padding: 20px 30px;
+    padding: 20px 35px;
+    gap: 30px;
   }
 
   .countdown-item {
     gap: 6px;
     min-width: 60px;
+  }
+
+  .invitation {
+    padding: 20 30px;
   }
 }
 
@@ -141,7 +161,6 @@ section {
 
   section {
     max-width: 100%;
-    padding: 20px 10px;
   }
 
   .hero {
@@ -153,9 +172,8 @@ section {
   }
 
   .countdown {
-    gap: 15px;
-    margin: 15px auto 0;
-    padding: 15px 20px;
+    padding: 15px 30px;
+    gap: 25px;
   }
 
   .countdown-item {
@@ -526,23 +544,4 @@ section {
   background-color: #d0d0d0;
 }
 
-.invitation__content {
-  margin: 0 auto;
-  text-align: left;
-}
-
-.invitation__text {
-  line-height: 1.8;
-  margin-bottom: var(--spacing-md);
-}
-
-.invitation__text em {
-  font-weight: bold;
-  text-align: center;
-}
-
-.invitation__signature {
-  font-style: italic;
-  margin-top: var(--spacing-lg);
-}
  */
