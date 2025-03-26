@@ -121,6 +121,31 @@ section {
   margin-top: var(--spacing-lg);
 }
 
+/* SECTION INFO */
+.info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.info-item-header {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.info-item p {
+  margin: 0;
+}
+
+.info-item--appreciation {
+  margin-top: 20px;
+}
+
 @media (max-width: 1024px) {
   html {
     font-size: 18px;
@@ -182,105 +207,7 @@ section {
   }
 }
 
-/* SECTION INFO */
-/* .info {
-  padding: 40px 20px;
-}
-
-.info-container {
-  width: 100%;
-  margin: 0 auto;
-}
-
-.info-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.info-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  border-radius: 10px;
-}
-
-.info-item:last-child {
-  margin-bottom: 0;
-}
-
-.info-content {
-  width: 100%;
-}
-
-.header-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  margin-bottom: 20px;
-}
-
-.info-content h2 {
-  margin: 0;
-  line-height: 1.2;
-}
-
-.info-icon {
-  width: 32px;
-  height: 32px;
-  flex-shrink: 0;
-}
-
-.info-content p {
-  margin: 15px 0;
-  line-height: 1.8;
-  text-align: left;
-  width: 100%;
-}
-
-.rules-list h3 {
-  margin: 0 0 20px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.rules-list ul {
-  list-style: none;
-  padding: 0;
-  margin: 0 0 30px;
-}
-
-.rules-list ul:last-child {
-  margin-bottom: 0;
-}
-
-.rules-list li {
-  margin-bottom: 15px;
-  line-height: 1.8;
-  padding: 0;
-  text-align: center;
-  text-indent: 20px;
-}
-
-.rules-list li:last-child {
-  margin-bottom: 0;
-}
-
-.info-item.appreciation {
-  align-items: center;
-}
-
-.info-item.appreciation .info-content h2 {
-  margin-bottom: 0;
-}
-
-.info-item.appreciation p {
-  margin: 0;
-  font-style: italic;
-  line-height: 1.2;
-}
+/* 
 
 .schedule {
   padding: 60px 20px;
