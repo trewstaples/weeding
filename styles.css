@@ -331,6 +331,13 @@ section {
     font-size: 16px;
   }
 
+  .map__tab-button span,
+  .address-input,
+  .search-button,
+  .reset-button {
+    font-size: var(--font-size-small);
+  }
+
   section {
     max-width: 100%;
   }
