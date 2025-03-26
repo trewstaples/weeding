@@ -28,9 +28,10 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', () => {
   const tabButtons = document.querySelectorAll('.map__tab-button')
   const mapFrame = document.querySelector('.map__iframe')
+  const resetButton = document.querySelector('.reset-button')
 
   const mapUrls = {
-    registry_office: 'https://yandex.ru/map-widget/v1/?ll=30.244703%2C59.987105&z=17.62&text=Отдел ЗАГС Приморского района&pt=30.244703,59.987105',
+    registry_office: 'https://yandex.ru/map-widget/v1/?ll=30.244703%2C59.987105&z=17.62&text=Отдел ЗАГС Приморского района',
     banquet: 'https://yandex.ru/map-widget/v1/?ll=30.244631%2C59.993622&z=17.62&text=Академия Вкуса&pt=30.244631,59.993622',
   }
 
@@ -38,12 +39,13 @@ document.addEventListener('DOMContentLoaded', () => {
     button.addEventListener('click', () => {
       tabButtons.forEach(btn => btn.classList.remove('active'))
       button.classList.add('active')
-
-      if (index === 0) {
-        mapFrame.src = mapUrls.registry_office
-      } else {
-        mapFrame.src = mapUrls.banquet
-      }
+      mapFrame.src = index === 0 ? mapUrls.registry_office : mapUrls.banquet
     })
+  })
+
+  // Обработчик для кнопки сброса
+  resetButton.addEventListener('click', () => {
+    const activeIndex = Array.from(tabButtons).findIndex(btn => btn.classList.contains('active'))
+    mapFrame.src = activeIndex === 0 ? mapUrls.registry_office : mapUrls.banquet
   })
 })
