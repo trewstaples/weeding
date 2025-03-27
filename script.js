@@ -1,6 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
   const weddingDate = new Date('2025-04-25 00:00:00').getTime()
 
+  function animateNumber(element, newValue) {
+    // Создаем новый элемент для анимации
+    const currentElement = element
+    const newElement = currentElement.cloneNode(true)
+
+    // Устанавливаем новое значение с ведущим нулем
+    newElement.textContent = String(newValue).padStart(2, '0')
+    newElement.classList.add('flip-in')
+
+    // Добавляем анимацию для текущего элемента
+    currentElement.classList.add('flip-out')
+
+    // После завершения анимации
+    setTimeout(() => {
+      currentElement.textContent = newElement.textContent
+      currentElement.classList.remove('flip-out')
+      currentElement.classList.add('flip-in')
+    }, 300)
+  }
+
   function updateCountdown() {
     const now = new Date().getTime()
     const difference = weddingDate - now
@@ -14,15 +34,41 @@ document.addEventListener('DOMContentLoaded', function () {
     const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
     const seconds = Math.floor((difference % (1000 * 60)) / 1000)
 
-    document.getElementById('weeks').innerText = weeks
-    document.getElementById('days').innerText = days
-    document.getElementById('hours').innerText = hours
-    document.getElementById('minutes').innerText = minutes
-    document.getElementById('seconds').innerText = seconds
+    const elements = {
+      weeks: document.getElementById('weeks'),
+      days: document.getElementById('days'),
+      hours: document.getElementById('hours'),
+      minutes: document.getElementById('minutes'),
+      seconds: document.getElementById('seconds'),
+    }
+
+    // Инициализируем начальные значения с ведущими нулями
+    if (!elements.weeks.textContent) elements.weeks.textContent = '00'
+    if (!elements.days.textContent) elements.days.textContent = '00'
+    if (!elements.hours.textContent) elements.hours.textContent = '00'
+    if (!elements.minutes.textContent) elements.minutes.textContent = '00'
+    if (!elements.seconds.textContent) elements.seconds.textContent = '00'
+
+    // Сохраняем предыдущие значения
+    const previousValues = {
+      weeks: elements.weeks.textContent,
+      days: elements.days.textContent,
+      hours: elements.hours.textContent,
+      minutes: elements.minutes.textContent,
+      seconds: elements.seconds.textContent,
+    }
+
+    // Обновляем значения с анимацией только если они изменились
+    if (String(weeks).padStart(2, '0') !== previousValues.weeks) animateNumber(elements.weeks, weeks)
+    if (String(days).padStart(2, '0') !== previousValues.days) animateNumber(elements.days, days)
+    if (String(hours).padStart(2, '0') !== previousValues.hours) animateNumber(elements.hours, hours)
+    if (String(minutes).padStart(2, '0') !== previousValues.minutes) animateNumber(elements.minutes, minutes)
+    if (String(seconds).padStart(2, '0') !== previousValues.seconds) animateNumber(elements.seconds, seconds)
   }
 
-  setInterval(updateCountdown, 1000)
+  // Инициализация и обновление каждую секунду
   updateCountdown()
+  setInterval(updateCountdown, 1000)
 })
 
 document.addEventListener('DOMContentLoaded', () => {
