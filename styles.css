@@ -138,12 +138,20 @@ section {
   backface-visibility: hidden;
 }
 
-.countdown-number.flip-out {
-  transform: rotateX(-180deg);
+.countdown-number.flip {
+  animation: flipNumber 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.countdown-number.flip-in {
-  transform: rotateX(0);
+@keyframes flipNumber {
+  0% {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(-90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
 }
 
 .countdown-label {
@@ -479,5 +487,98 @@ section {
 
   .map__iframe {
     height: 500px;
+  }
+}
+
+.progress-container {
+  margin-top: 30px;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar {
+  position: relative;
+  height: 4px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  margin: 0 20px 15px;
+}
+
+.progress-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: #e31b23;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+.progress-heart {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -45%);
+  transition: left 0.3s ease;
+}
+
+.progress-heart img {
+  width: 24px;
+  height: 24px;
+  animation: heartbeat 1s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.progress-dates {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: var(--color-secondary);
+  font-size: 0.8rem;
+}
+
+@media (max-width: 1024px) {
+  .progress-container {
+    margin-top: 20px;
+    padding: 15px;
+  }
+
+  .progress-heart img {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .progress-container {
+    margin-top: 15px;
+    padding: 10px;
+  }
+
+  .progress-bar {
+    margin: 0 10px 10px;
+  }
+
+  .progress-dates {
+    padding: 0 10px;
+    font-size: 0.7rem;
+  }
+
+  .progress-heart img {
+    width: 16px;
+    height: 16px;
   }
 }

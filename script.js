@@ -1,24 +1,46 @@
 document.addEventListener('DOMContentLoaded', function () {
   const weddingDate = new Date('2025-04-25 00:00:00').getTime()
+  const startDate = new Date('2025-03-25 00:00:00').getTime()
+  const totalPeriod = weddingDate - startDate
 
-  function animateNumber(element, newValue) {
+  function updateProgress() {
+    const now = new Date().getTime()
+    const elapsed = now - startDate
+    const progress = Math.min(Math.max((elapsed / totalPeriod) * 100, 0), 100)
+
+    const progressLine = document.querySelector('.progress-line')
+    const progressHeart = document.querySelector('.progress-heart')
+
+    progressLine.style.width = `${progress}%`
+    progressHeart.style.left = `${progress}%`
+  }
+
+  function animateNumber(element, newValue, oldValue) {
     // Создаем новый элемент для анимации
     const currentElement = element
-    const newElement = currentElement.cloneNode(true)
 
-    // Устанавливаем новое значение с ведущим нулем
-    newElement.textContent = String(newValue).padStart(2, '0')
-    newElement.classList.add('flip-in')
+    // Добавляем анимацию переворота только если значение изменилось
+    if (String(newValue).padStart(2, '0') !== String(oldValue).padStart(2, '0')) {
+      currentElement.classList.add('flip')
 
-    // Добавляем анимацию для текущего элемента
-    currentElement.classList.add('flip-out')
+      // Меняем значение на половине анимации
+      setTimeout(() => {
+        currentElement.textContent = String(newValue).padStart(2, '0')
+      }, 300)
 
-    // После завершения анимации
-    setTimeout(() => {
-      currentElement.textContent = newElement.textContent
-      currentElement.classList.remove('flip-out')
-      currentElement.classList.add('flip-in')
-    }, 300)
+      // Удаляем класс после завершения анимации
+      setTimeout(() => {
+        currentElement.classList.remove('flip')
+      }, 600)
+    }
+  }
+
+  let previousValues = {
+    weeks: null,
+    days: null,
+    hours: null,
+    minutes: null,
+    seconds: null,
   }
 
   function updateCountdown() {
@@ -43,27 +65,34 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Инициализируем начальные значения с ведущими нулями
-    if (!elements.weeks.textContent) elements.weeks.textContent = '00'
-    if (!elements.days.textContent) elements.days.textContent = '00'
-    if (!elements.hours.textContent) elements.hours.textContent = '00'
-    if (!elements.minutes.textContent) elements.minutes.textContent = '00'
-    if (!elements.seconds.textContent) elements.seconds.textContent = '00'
+    if (!elements.weeks.textContent) {
+      elements.weeks.textContent = '00'
+      elements.days.textContent = '00'
+      elements.hours.textContent = '00'
+      elements.minutes.textContent = '00'
+      elements.seconds.textContent = '00'
 
-    // Сохраняем предыдущие значения
-    const previousValues = {
-      weeks: elements.weeks.textContent,
-      days: elements.days.textContent,
-      hours: elements.hours.textContent,
-      minutes: elements.minutes.textContent,
-      seconds: elements.seconds.textContent,
+      // Добавляем начальную анимацию для всех элементов
+      Object.values(elements).forEach(el => {
+        el.classList.add('flip')
+        setTimeout(() => {
+          el.classList.remove('flip')
+        }, 600)
+      })
     }
 
     // Обновляем значения с анимацией только если они изменились
-    if (String(weeks).padStart(2, '0') !== previousValues.weeks) animateNumber(elements.weeks, weeks)
-    if (String(days).padStart(2, '0') !== previousValues.days) animateNumber(elements.days, days)
-    if (String(hours).padStart(2, '0') !== previousValues.hours) animateNumber(elements.hours, hours)
-    if (String(minutes).padStart(2, '0') !== previousValues.minutes) animateNumber(elements.minutes, minutes)
-    if (String(seconds).padStart(2, '0') !== previousValues.seconds) animateNumber(elements.seconds, seconds)
+    if (weeks !== previousValues.weeks) animateNumber(elements.weeks, weeks, previousValues.weeks)
+    if (days !== previousValues.days) animateNumber(elements.days, days, previousValues.days)
+    if (hours !== previousValues.hours) animateNumber(elements.hours, hours, previousValues.hours)
+    if (minutes !== previousValues.minutes) animateNumber(elements.minutes, minutes, previousValues.minutes)
+    if (seconds !== previousValues.seconds) animateNumber(elements.seconds, seconds, previousValues.seconds)
+
+    // Сохраняем текущие значения как предыдущие
+    previousValues = { weeks, days, hours, minutes, seconds }
+
+    // Update progress bar
+    updateProgress()
   }
 
   // Инициализация и обновление каждую секунду
