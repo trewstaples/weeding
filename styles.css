@@ -487,6 +487,10 @@ section.visible {
     padding-bottom: 15px;
   }
 
+  .schedule__item {
+    gap: 30px;
+  }
+
   .map__content {
     align-items: center;
   }
