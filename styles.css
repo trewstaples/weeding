@@ -11,7 +11,7 @@ html {
 }
 
 :root {
-  --color-primary: rgb(43, 93, 124);
+  --color-primary: rgba(84, 74, 23, 1);
   --color-secondary: rgb(51, 51, 51);
   --font-family-title: 'Cormorant Garamond', serif;
   --font-family-base: 'Montserrat', sans-serif;
@@ -81,8 +81,9 @@ section.visible {
 .hero-image {
   position: relative;
   width: 100%;
-  background: url('img/nature.png') no-repeat center center;
+  background: url('img/city.webp') no-repeat center center;
   background-size: cover;
+  border-radius: 10px;
   aspect-ratio: 1 / 1;
 }
 
