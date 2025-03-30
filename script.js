@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
   const startDate = new Date('2025-03-25 00:00:00').getTime()
   const totalPeriod = weddingDate - startDate
 
+  // Функция для склонения слов
+  function declensionNum(num, words) {
+    const cases = [2, 0, 1, 1, 1, 2]
+    return words[num % 100 > 4 && num % 100 < 20 ? 2 : cases[num % 10 < 5 ? num % 10 : 5]]
+  }
+
   function updateProgress() {
     const now = new Date().getTime()
     const elapsed = now - startDate
@@ -15,17 +21,25 @@ document.addEventListener('DOMContentLoaded', function () {
     progressHeart.style.left = `${progress}%`
   }
 
-  function animateNumber(element, newValue, oldValue) {
+  function animateNumber(element, newValue, oldValue, labelElement, words) {
     // Создаем новый элемент для анимации
     const currentElement = element
 
+    // Форматируем число: без ведущего нуля для чисел < 10
+    const formattedNewValue = String(newValue)
+    const formattedOldValue = oldValue !== null ? String(oldValue) : '0'
+
     // Добавляем анимацию переворота только если значение изменилось
-    if (String(newValue).padStart(2, '0') !== String(oldValue).padStart(2, '0')) {
+    if (formattedNewValue !== formattedOldValue) {
       currentElement.classList.add('flip')
 
       // Меняем значение на половине анимации
       setTimeout(() => {
-        currentElement.textContent = String(newValue).padStart(2, '0')
+        currentElement.textContent = formattedNewValue
+        // Обновляем склонение
+        if (labelElement && words) {
+          labelElement.textContent = declensionNum(newValue, words)
+        }
       }, 300)
 
       // Удаляем класс после завершения анимации
@@ -64,13 +78,29 @@ document.addEventListener('DOMContentLoaded', function () {
       seconds: document.getElementById('seconds'),
     }
 
-    // Инициализируем начальные значения с ведущими нулями
+    const labels = {
+      weeks: document.querySelector('[data-label="weeks"]'),
+      days: document.querySelector('[data-label="days"]'),
+      hours: document.querySelector('[data-label="hours"]'),
+      minutes: document.querySelector('[data-label="minutes"]'),
+      seconds: document.querySelector('[data-label="seconds"]'),
+    }
+
+    const wordForms = {
+      weeks: ['неделя', 'недели', 'недель'],
+      days: ['день', 'дня', 'дней'],
+      hours: ['час', 'часа', 'часов'],
+      minutes: ['минута', 'минуты', 'минут'],
+      seconds: ['секунда', 'секунды', 'секунд'],
+    }
+
+    // Инициализируем начальные значения без ведущих нулей
     if (!elements.weeks.textContent) {
-      elements.weeks.textContent = '00'
-      elements.days.textContent = '00'
-      elements.hours.textContent = '00'
-      elements.minutes.textContent = '00'
-      elements.seconds.textContent = '00'
+      elements.weeks.textContent = '0'
+      elements.days.textContent = '0'
+      elements.hours.textContent = '0'
+      elements.minutes.textContent = '0'
+      elements.seconds.textContent = '0'
 
       // Добавляем начальную анимацию для всех элементов
       Object.values(elements).forEach(el => {
@@ -82,11 +112,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Обновляем значения с анимацией только если они изменились
-    if (weeks !== previousValues.weeks) animateNumber(elements.weeks, weeks, previousValues.weeks)
-    if (days !== previousValues.days) animateNumber(elements.days, days, previousValues.days)
-    if (hours !== previousValues.hours) animateNumber(elements.hours, hours, previousValues.hours)
-    if (minutes !== previousValues.minutes) animateNumber(elements.minutes, minutes, previousValues.minutes)
-    if (seconds !== previousValues.seconds) animateNumber(elements.seconds, seconds, previousValues.seconds)
+    if (weeks !== previousValues.weeks) animateNumber(elements.weeks, weeks, previousValues.weeks, labels.weeks, wordForms.weeks)
+    if (days !== previousValues.days) animateNumber(elements.days, days, previousValues.days, labels.days, wordForms.days)
+    if (hours !== previousValues.hours) animateNumber(elements.hours, hours, previousValues.hours, labels.hours, wordForms.hours)
+    if (minutes !== previousValues.minutes) animateNumber(elements.minutes, minutes, previousValues.minutes, labels.minutes, wordForms.minutes)
+    if (seconds !== previousValues.seconds) animateNumber(elements.seconds, seconds, previousValues.seconds, labels.seconds, wordForms.seconds)
 
     // Сохраняем текущие значения как предыдущие
     previousValues = { weeks, days, hours, minutes, seconds }
