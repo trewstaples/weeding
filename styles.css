@@ -373,6 +373,12 @@ section.visible {
   font-size: 20px;
 }
 
+.map__tab-icon {
+  display: block;
+  fill: currentColor;
+  transform: translateZ(0);
+}
+
 .map__address-search {
   width: 100%;
 }
