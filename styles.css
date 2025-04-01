@@ -122,13 +122,17 @@ section {
   padding: 40px 20px;
   max-width: 800px;
   opacity: 0;
-  transform: translateY(50px);
+  transform: translateY(50px) translateZ(0);
   transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, opacity;
+  -webkit-font-smoothing: antialiased;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 section.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) translateZ(0);
 }
 
 .hero {
