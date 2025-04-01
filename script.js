@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
+  const startDate = new Date('2025-03-25 00:00:00').getTime()
   const weddingDate = new Date('2025-04-25 00:00:00').getTime()
-  const startDate = new Date('2025-04-21 00:00:00').getTime()
   const totalPeriod = weddingDate - startDate
 
   // Функция для склонения слов
