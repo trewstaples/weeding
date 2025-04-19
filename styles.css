@@ -278,6 +278,10 @@ section.visible {
   margin-top: var(--spacing-lg);
 }
 
+.invitation__signature span {
+  font-style: normal;
+}
+
 /* SECTION INFO */
 .info-list {
   display: flex;
