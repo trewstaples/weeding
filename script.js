@@ -1,7 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  const startDate = new Date('2025-03-25 00:00:00').getTime()
   const weddingDate = new Date('2025-04-25 12:00:00').getTime()
-  const totalPeriod = weddingDate - startDate
 
   // Функция для склонения слов
   function declensionNum(num, words) {
@@ -9,16 +7,15 @@ document.addEventListener('DOMContentLoaded', function () {
     return words[num % 100 > 4 && num % 100 < 20 ? 2 : cases[num % 10 < 5 ? num % 10 : 5]]
   }
 
+  // Изменено: вместо прогресса теперь просто визуальное оформление
   function updateProgress() {
-    const now = new Date().getTime()
-    const elapsed = now - startDate
-    const progress = Math.min(Math.max((elapsed / totalPeriod) * 100, 0), 100)
-
     const progressLine = document.querySelector('.progress-line')
     const progressHeart = document.querySelector('.progress-heart')
 
-    progressLine.style.width = `${progress}%`
-    progressHeart.style.left = `${progress}%`
+    if (progressLine && progressHeart) {
+      progressLine.style.width = '100%'
+      progressHeart.style.left = '100%'
+    }
   }
 
   function animateNumber(element, newValue, oldValue, labelElement, words) {
@@ -50,44 +47,76 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   let previousValues = {
-    weeks: null,
+    years: null,
+    months: null,
     days: null,
     hours: null,
     minutes: null,
     seconds: null,
   }
 
-  function updateCountdown() {
+  // Изменено: обновляем счетчик для отображения времени после свадьбы
+  function updateTimeAfterWedding() {
     const now = new Date().getTime()
-    const difference = weddingDate - now
+    const difference = now - weddingDate
 
-    const totalHours = Math.floor(difference / (1000 * 60 * 60))
+    // Если свадьба еще не наступила, показываем нули
+    if (difference < 0) {
+      return
+    }
+
+    const totalSeconds = Math.floor(difference / 1000)
+    const totalMinutes = Math.floor(totalSeconds / 60)
+    const totalHours = Math.floor(totalMinutes / 60)
     const totalDays = Math.floor(totalHours / 24)
 
-    const weeks = Math.floor(totalDays / 7)
-    const days = totalDays % 7
+    // Расчет прошедших лет и месяцев
+    const weddingDateObj = new Date(weddingDate)
+    const currentDate = new Date()
+
+    let years = currentDate.getFullYear() - weddingDateObj.getFullYear()
+    let months = currentDate.getMonth() - weddingDateObj.getMonth()
+
+    if (months < 0) {
+      years--
+      months += 12
+    }
+
+    // Корректировка дней
+    const days = totalDays - years * 365 - Math.floor(months * 30.4)
     const hours = totalHours % 24
-    const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60))
-    const seconds = Math.floor((difference % (1000 * 60)) / 1000)
+    const minutes = totalMinutes % 60
+    const seconds = totalSeconds % 60
 
     const elements = {
-      weeks: document.getElementById('weeks'),
-      days: document.getElementById('days'),
-      hours: document.getElementById('hours'),
+      years: document.getElementById('years') || document.getElementById('weeks'),
+      months: document.getElementById('months') || document.getElementById('days'),
+      days: document.getElementById('days') || document.getElementById('hours'),
+      hours: document.getElementById('hours') || document.getElementById('minutes'),
       minutes: document.getElementById('minutes'),
       seconds: document.getElementById('seconds'),
     }
 
     const labels = {
-      weeks: document.querySelector('[data-label="weeks"]'),
-      days: document.querySelector('[data-label="days"]'),
-      hours: document.querySelector('[data-label="hours"]'),
+      years: document.querySelector('[data-label="years"]') || document.querySelector('[data-label="weeks"]'),
+      months: document.querySelector('[data-label="months"]') || document.querySelector('[data-label="days"]'),
+      days: document.querySelector('[data-label="days"]') || document.querySelector('[data-label="hours"]'),
+      hours: document.querySelector('[data-label="hours"]') || document.querySelector('[data-label="minutes"]'),
       minutes: document.querySelector('[data-label="minutes"]'),
       seconds: document.querySelector('[data-label="seconds"]'),
     }
 
+    // Обновим названия меток
+    if (labels.years && labels.years.dataset.label === 'weeks') {
+      labels.years.dataset.label = 'years'
+    }
+    if (labels.months && labels.months.dataset.label === 'days') {
+      labels.months.dataset.label = 'months'
+    }
+
     const wordForms = {
-      weeks: ['неделя', 'недели', 'недель'],
+      years: ['год', 'года', 'лет'],
+      months: ['месяц', 'месяца', 'месяцев'],
       days: ['день', 'дня', 'дней'],
       hours: ['час', 'часа', 'часов'],
       minutes: ['минута', 'минуты', 'минут'],
@@ -95,39 +124,42 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // Инициализируем начальные значения без ведущих нулей
-    if (!elements.weeks.textContent) {
-      elements.weeks.textContent = '0'
-      elements.days.textContent = '0'
-      elements.hours.textContent = '0'
-      elements.minutes.textContent = '0'
-      elements.seconds.textContent = '0'
+    if (elements.years && !elements.years.textContent) {
+      Object.keys(elements).forEach(key => {
+        if (elements[key]) {
+          elements[key].textContent = '0'
+        }
+      })
 
       // Добавляем начальную анимацию для всех элементов
       Object.values(elements).forEach(el => {
-        el.classList.add('flip')
-        setTimeout(() => {
-          el.classList.remove('flip')
-        }, 600)
+        if (el) {
+          el.classList.add('flip')
+          setTimeout(() => {
+            el.classList.remove('flip')
+          }, 600)
+        }
       })
     }
 
     // Обновляем значения с анимацией только если они изменились
-    if (weeks !== previousValues.weeks) animateNumber(elements.weeks, weeks, previousValues.weeks, labels.weeks, wordForms.weeks)
-    if (days !== previousValues.days) animateNumber(elements.days, days, previousValues.days, labels.days, wordForms.days)
-    if (hours !== previousValues.hours) animateNumber(elements.hours, hours, previousValues.hours, labels.hours, wordForms.hours)
-    if (minutes !== previousValues.minutes) animateNumber(elements.minutes, minutes, previousValues.minutes, labels.minutes, wordForms.minutes)
-    if (seconds !== previousValues.seconds) animateNumber(elements.seconds, seconds, previousValues.seconds, labels.seconds, wordForms.seconds)
+    if (elements.years && years !== previousValues.years) animateNumber(elements.years, years, previousValues.years, labels.years, wordForms.years)
+    if (elements.months && months !== previousValues.months) animateNumber(elements.months, months, previousValues.months, labels.months, wordForms.months)
+    if (elements.days && days !== previousValues.days) animateNumber(elements.days, days, previousValues.days, labels.days, wordForms.days)
+    if (elements.hours && hours !== previousValues.hours) animateNumber(elements.hours, hours, previousValues.hours, labels.hours, wordForms.hours)
+    if (elements.minutes && minutes !== previousValues.minutes) animateNumber(elements.minutes, minutes, previousValues.minutes, labels.minutes, wordForms.minutes)
+    if (elements.seconds && seconds !== previousValues.seconds) animateNumber(elements.seconds, seconds, previousValues.seconds, labels.seconds, wordForms.seconds)
 
     // Сохраняем текущие значения как предыдущие
-    previousValues = { weeks, days, hours, minutes, seconds }
+    previousValues = { years, months, days, hours, minutes, seconds }
 
-    // Update progress bar
+    // Обновляем визуальное оформление
     updateProgress()
   }
 
   // Инициализация и обновление каждую секунду
-  updateCountdown()
-  setInterval(updateCountdown, 1000)
+  updateTimeAfterWedding()
+  setInterval(updateTimeAfterWedding, 1000)
 })
 
 document.addEventListener('DOMContentLoaded', () => {
